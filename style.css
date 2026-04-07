@@ -508,3 +508,42 @@ header p { color: var(--text-muted); font-size: 1.1rem; }
 .info-list strong {
     color: var(--text-main);
 }
+/* --- Footer / Team Credits --- */
+footer {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.team-credits {
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border-top: 4px solid var(--primary-color);
+    border-radius: var(--radius-md);
+}
+
+.team-credits h3 {
+    color: var(--text-main);
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.team-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.team-list li {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: color 0.2s ease;
+}
+
+.team-list li:hover {
+    color: var(--primary-hover);
+}
