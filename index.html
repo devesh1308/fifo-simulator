@@ -3,49 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIFO Page Replacement Simulator</title>
+    <title>Page Replacement Simulator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>FIFO Page Replacement Simulator</h1>
-            <p>Visualize the First-In-First-Out OS memory management algorithm</p>
+            <h1>Page Replacement Simulator</h1>
+            <p>Visualize OS memory management algorithms in real-time</p>
             <button id="info-btn" class="btn secondary info-toggle-btn">What is FIFO? ℹ️</button>
         </header>
 
         <main>
             <div id="info-wrapper" class="info-wrapper">
-                <section id="fifo-info-card" class="card info-card">
-                    <h3>📖 Understanding FIFO (First-In-First-Out)</h3>
-                    <p>FIFO is the simplest page replacement algorithm used by operating systems to manage memory.</p>
-                    <ul class="info-list">
-                        <li><strong>How it works:</strong> The OS tracks all pages in memory in a queue. When memory is full and a new page needs to be loaded (a <em>Page Fault</em>), the OS evicts the oldest page (the one that entered first) to make room.</li>
-                        <li><strong>Analogy:</strong> Think of a queue at a grocery store. The person who has been in line the longest gets served and leaves first.</li>
-                        <li><strong>The Catch (Belady's Anomaly):</strong> While simple, FIFO is not always optimal. It suffers from a strange phenomenon where giving the system <em>more</em> memory frames can sometimes cause <em>more</em> page faults!</li>
-                    </ul>
+                <section id="algo-info-card" class="card info-card">
+                    <h3 id="info-title">📖 Understanding FIFO</h3>
+                    <p id="info-desc">FIFO is the simplest page replacement algorithm used by operating systems.</p>
+                    <ul class="info-list" id="info-bullets"></ul>
                 </section>
             </div>
 
             <section class="card input-section">
-                <div class="input-group">
-                    <label for="frames">Number of Frames:</label>
-                    <input type="number" id="frames" min="1" max="10" placeholder="e.g., 3" value="3">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="algorithm">Algorithm (For Visual Simulation):</label>
+                        <select id="algorithm" class="form-control">
+                            <option value="FIFO">FIFO (First-In-First-Out)</option>
+                            <option value="LRU">LRU (Least Recently Used)</option>
+                            <option value="OPTIMAL">Optimal</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="frames">Number of Frames:</label>
+                        <input type="number" id="frames" class="form-control" min="1" max="10" placeholder="e.g., 3" value="3">
+                    </div>
                 </div>
                 
-                <div class="input-group">
+                <div class="input-group" style="margin-top: 1.5rem;">
                     <label for="reference-string">Page Reference String (comma-separated):</label>
-                    <input type="text" id="reference-string" placeholder="e.g., 7, 0, 1, 2, 0, 3, 0, 4" value="7,0,1,2,0,3,0,4,2,3,0,3,2">
+                    <input type="text" id="reference-string" class="form-control" placeholder="e.g., 7, 0, 1, 2, 0, 3, 0, 4" value="7,0,1,2,0,3,0,4,2,3,0,3,2">
                 </div>
 
                 <div class="button-group">
-                    <button id="simulate-btn" class="btn primary">Simulate</button>
+                    <button id="simulate-btn" class="btn primary">Simulate 🐢</button>
+                    <button id="compare-btn" class="btn compare-btn">Compare All ⚡</button>
                     <button id="reset-btn" class="btn secondary">Reset</button>
                 </div>
             </section>
 
-            <section id="controls-section" class="card controls-section hidden">
-                </section>
+            <section id="comparison-section" class="card hidden" style="border-left: 4px solid #10b981;">
+                <h3 style="margin-bottom: 0.5rem; color: var(--text-main);">📊 Instant Comparison Results</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Results for frames: <strong id="comp-frames" style="color: var(--text-main);"></strong> | Total Pages: <strong id="comp-pages" style="color: var(--text-main);"></strong></p>
+                <div class="table-container" style="margin-bottom: 0;">
+                    <table class="simulation-table">
+                        <thead>
+                            <tr>
+                                <th>Algorithm</th>
+                                <th>Page Faults</th>
+                                <th>Page Hits</th>
+                                <th>Hit Ratio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comparison-table-body">
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="controls-section" class="card controls-section hidden"></section>
 
             <section id="live-stats-section" class="hidden">
                 <div class="card step-explanation">
@@ -73,22 +99,21 @@
                 </div>
             </section>
 
-            <section id="output-section" class="output-section">
-                </section>
+            <section id="output-section" class="output-section"></section>
+            
             <footer>
                 <div class="team-credits card">
                     <h3>Built By 🚀</h3>
                     <ul class="team-list">
-                        <li>Devesh Patel</li>
-                        <li>Vishwa Patel </li>
-                        <li>Soham Pawar </li>
-                        <li>Gaurang Parmar </li>
+                        <li>Your Name</li>
+                        <li>Team Member 2</li>
+                        <li>Team Member 3</li>
                     </ul>
                 </div>
             </footer>
-
         </main>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
